@@ -9,12 +9,12 @@ def setup_logger():
         logger: The configured logger object.
     """
 
-    logger = logging.getLogger('access_point_logger')
+    logger = logging.getLogger('ingredients_recognizer_logger')
     logger.setLevel(logging.INFO)
 
     # Create a handler that writes log messages to a file, with rotation
     handler = RotatingFileHandler(
-        'access_point.log',  # Path to the log file
+        'ingredients_recognizer.log',  # Path to the log file
         maxBytes=15*1024*1024,  # Max log file size (15MB)
         backupCount=3  # Number of backup files to keep
     )

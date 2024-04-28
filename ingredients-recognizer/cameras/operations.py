@@ -16,13 +16,11 @@ def capture_image():
     """
 
     try:
-        # File to save the captured image temporarily
         temp_image_file = "/tmp/captured_image.jpg"
         
-        # Capture image using libcamera-still
+        # Capture image using libcamera-still command
         subprocess.run(["libcamera-still", "-o", temp_image_file, "-t", "100", "--nopreview", "--autofocus-mode=manual", "--lens-position=4"], check=True)
 
-        # Open the captured image
         with open(temp_image_file, "rb") as image_file:
             stream = io.BytesIO(image_file.read())
         
@@ -31,7 +29,6 @@ def capture_image():
         image = Image.open(stream)
         flipped_image = image.transpose(Image.FLIP_TOP_BOTTOM)
 
-        # Save the flipped image to a new stream
         flipped_stream = io.BytesIO()
         flipped_image.save(flipped_stream, format='jpeg')
         flipped_image_bytes = flipped_stream.getvalue()
